@@ -183,3 +183,55 @@ Working with Dates
 SELECT * FROM rental WHERE rental_date = '2005-05-24 22:53:30';
 SELECT * FROM rental WHERE rental_date > '2005-05-24';
 SELECT * FROM rental WHERE rental_date BETWEEN '2005- 05-24' AND '2005-05-29';
+SELECT * FROM rental WHERE rental_date LIKE '2005%';
+NULL cannot be compared with any value. We must use and IS to use it in the WHERE clause.
+We can work with comparison operators and datetime columns.
+We can use the ORDER BY clause to sort the resultset with ascending and descending orders of datetime, numerical, and character columns.
+===============================================================================================================================================
+Single Row Functions
+We will see the various categories of single-row functions such as case and character manipulation,number manipulation, and data manipulation
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Following is the detailed list of topics we will learn and demonstrate with the SQL queries in this chapter:
+Single Row Functions
+The Dual Table
+The case manipulation functions
+The character manipulation functions
+Number Manipulation functions
+Date Manipulation Functions
+Datetime to string and vice versa
+NULL HandlingCASE statement
+Nested Single Row functions
+===============================================================================================================================================
+SQL functions are divided into two types:
+Single Row Functions (also known as, Scalar Functions)
+Aggregate Functions (also known as, Group Functions)
+USE Sakila;
+SELECT 1 from DUAL;
+SELECT 1 + 1 from DUAL;
+SELECT 'Oracle' from DUAL;
+The first and the second query select numbers, and the third query selects the string.
+NOTE: In MySQL and MariaDB we do not require DUAL table and same queries can be run without the from DUAL option.i.e. SELECT 1 from DUAL and SELECT 1 
+would work the same in MySQL and MariaDB. In Oracle always a table is required hence the concept of dummy table.
+==================================================================================================================================================
+SELECT title, description FROM film;
+SELECT title, LOWER(title) FROM film;
+The output will have the title as the first column and all the characters in lowercase in the second column of the output as follows:
+SELECT description, Upper(description) FROM film;
+Run this query; the output will have the description column and the uppercase of that column.
+SELECT CONCAT('Oracle', ' SQL') FROM DUAL;
+SELECT CONCAT(title, description) FROM film;
+SELECT SUBSTR('Oracle SQL', 1, 6) FROM DUAL;
+SUBSTR(string, start, length)
+1.string	Required. The string to extract from
+2.Start	Required. The start position. Can be both a positive or negative number. If it is a positive number, this function extracts from the beginning of 
+the string. If it is a negative number, this function extracts from the end of the string
+3.length	Optional. The number of characters to extract. If omitted, the whole string will be returned (from the start position)
+==================================================================================================================================================
+SELECT title, LENGTH(title) FROM film;
+We can know the location of a substring within a string using the function as follows:
+SELECT INSTR('Oracle SQL', 'S') FROM DUAL;
+SELECT INSTR('Oracle SQL', '1') FROM DUAL;
+We can use the functions LPAD() and RPAD() to pad a string with a particular character. Run the following query to see LPAD() in action:
+Following is an example of RPAD() in action:
+SELECT RPAD('Oracle', 15, '*') FROM DUAL;
+======================================================Second Commit===============================================================================
