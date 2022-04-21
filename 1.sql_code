@@ -231,3 +231,66 @@ We can use the functions LPAD() and RPAD() to pad a string with a particular cha
 Following is an example of RPAD() in action:
 SELECT RPAD('Oracle', 15, '*') FROM DUAL;
 ======================================================Second Commit===============================================================================
+Number Manipulation Functions
+We can round off and truncate numbers. MySQL has functions ROUND() and TRUNCATE() for these. They accept a number and position of the digit as arguments.
+The negative integer position means the position is before the decimal point, 0 means the decimal point, and the positive integer means it is
+the place after the decimal point. The function ROUND() rounds off the number whereas the function TRUNCATE() truncates the number.
+==========================================================================================================================================
+SELECT ROUND(67.1234, 1), ROUND(67.1234, 0),ROUND(67.1234, -1) FROM DUAL;
+SELECT ROUND(67.1234, 2), ROUND(67.1234, 0),ROUND(67.1234, -2) FROM DUAL;
+SELECT TRUNCATE(67.1234, 1) from dual;
+SELECT TRUNCATE(67.1234, 0) from dual;
+SELECT TRUNCATE(67.1234, -1) from dual;
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ROUND(number, decimals, operation)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+number	Required. The number to be rounded
+decimals	Required. The number of decimal places to round number to
+operation	Optional. If 0, it rounds the result to the number of decimal. If another value than 0, it truncates the result to the number of decimals. 
+Default value is 0.
+SELECT ROUND(235.415, 2, 1) AS RoundValue;
+235.410
+====================================================================================================================================================
+We can also use the function MOD() to compute the modulus:
+The MOD() function returns the remainder of a number divided by another number.
+SELECT MOD(15, 6) from dual;
+x	Required. A value that will be divided by y
+y	Required. The divisor
+SELECT MOD(18, 4);
+MOD(18, 4)
+2
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Date Manipulation Functions
+We can retrieve the current date as follow:
+SELECT sysdate() from DUAL;
+We can compute the difference between two dates as follows:
+SELECT TIMESTAMPDIFF(DAY, '2012-05-05', sysdate()) FROM DUAL;
+SELECT TIMESTAMPDIFF(MONTH, '2012-05-05', sysdate()) FROM DUAL;
+=================================================================================================================================================
+The first argument is the unit of measure of the difference,and the rest two arguments are the dates. They could be the date columns or the absolute 
+dates, as shown above. Finally,we can add several days to date as follows:
+=====================================================================================================================================================
+SELECT DATE_ADD(sysdate(), INTERVAL 10 DAY);
+SELECT DATE_ADD(sysdate(), INTERVAL -10 DAY);
+=====================================================================================================================================================
+Datetime to String and Vice Versa
+We can convert datetime to string and vice versa. We can use the function STR_TO_DATE() to convert any formatted string to a date.The first argument is 
+the string, and the second argument is the format used to represent the date in the string. Following are the examples of the function calls:
+SELECT STR_TO_DATE('25/08/1986', '%d/%m/%Y') FROM DUAL;
+SELECT STR_TO_DATE('25-08-1986', '%d-%m-%Y') FROM DUAL;
+SELECT STR_TO_DATE('15-AUG-1947', '%d-%M-%Y') FROM DUAL;
+Similarly, we can use the function DATE_FORMAT() to convert a date to a string in the desired format as follows:
+SELECT DATE_FORMAT(SYSDATE(), '%Y-%m-%d') FROM DUAL;
+SELECT DATE_FORMAT(SYSDATE(), '%Y-%m-%d %H:%i:%s') FROM DUAL;
+SELECT DATE_FORMAT(SYSDATE(), '%d-%b-%Y') FROM DUAL;
+================================================================================================================================================
+NULL Handling
+Let us have a look at a few functions that handle the NULL value. If a value is then we can replace it with the function
+Following is an example:
+select original_language_id, IFNULL (original_language_id,'English') from film;
+============================================================================================================================================
+In the query above, if the value of the first argument is then it is substituted by the second argument.
+The function returns NULL if two expressions are equal else will return the first argument passed. We can use it as follows:
+Select first_name, last_name, length(first_name),length(last_name),NULLIF(length(first_name), length(last_name)) from actor;
+In the example above, we are comparing the lengths of two different character columns. The result looks as follows:
+============================================================================================================================================
