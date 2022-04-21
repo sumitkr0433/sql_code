@@ -1,0 +1,185 @@
+There are other historical and
+current data models too. Following is the list of a few of
+them:Hierarchical database model
+Network model
+Object model
+Document model
+Key–value model
+Associative model
+Correlational model
+Multidimensional model
+Multivalue model
+Semantic model
+XML database
+Named graph (GraphDB)Triplestore/Resource Distribution Framework (RDF)
+=============================================================================================================================
+Note:-- installation of mysql
+go with custom while installing the mysql rather choosing the option developer
+Choose the first radio button (Standalone MySQL Server/Classic MySQL Replication), as shown in the screenshot above, and click on the Next button.
+It will show us the configuration options as follows:
+port :3306
+Using the password encryption
+========================================
+sudo apt-get update
+sudo apt-get install mariadb-server --fix-missing -y
+sudo apt-get install mariadb-client -y
+===============================================================================================================================
+We can connect to an instance with the Windows command
+prompt. Just run the following command on cmd to connect
+to an instance of MariaDB:
+mysql -u root -ptest123 -h localhost -P 3310
+To connect to an instance of MySQL:
+mysql -u root -ptest123 -h localhost -P 3306
+There is no space between -p and the password. This is how the connection with command prompt looks similar to the
+following screenshot:
+=====================================================================================================================================
+NOTE: If the command fails with 'mysql' not found, please make sure to check the PATH environment variable has the path 
+'C:\Program Files\MySQL\MySQL Server 8.0\bin' added.
+======================================================================================================================================
+We can create a new user with the username of and the password with the following query:
+CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'test123';
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+The following query grants all the privileges on all the databases/schemas to the newly created user
+GRANT ALL PRIVILEGES ON *.* TO 'testuser'@'localhost';
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+We can run these queries with any interface (GUI or command prompt), and the result will be the same;If we are using Debian / Raspbian, we can log in to 
+our database without using sudo as follows:
+mysql -u testuser -ptest123 -h localhost -P 3310
+================================================================================================================================
+Download the zip file of the database from
+https://github.com/datacharmer/test_db/archive/master.zip
+=========================================================================================================================
+Now, to see what sample schemas are installed already, run
+the following query:
+SHOW DATABASES;
+====================================================================================================================================
+mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-
+schema.sql
+mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-data.sql
+Run the following commands on the Raspbian / Debian
+command prompt:
+sudo mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-
+schema.sql
+sudo mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-
+data.sql
+=======================================================================================================================================
+The GUI tools like HeidiSQL, Oracle SQL Developer, and MySQL Workbench provide easy to use interface for MySQL and MariaDB.
+========================================================================================================================================
+SHOW DATABASES;
+To query the objects such as tables of a schema, we need to switch to that schema. The following query selects the schema sakila:
+USE SAKILA;
+To see the list of tables in a schema, we run the following query:
+SHOW TABLES;
+=======================================================================================================================================
+SELECTION SYNTAX
+SELECT * FROM ACTOR;  WHERE * ALL FIELDS
+To see the structure of table we can run any of the following queries:
+DESC ACTOR;
+DESCRIBE ACTOR;
+SELECT * FROM ACTOR WHERE FIRST_NAME = 'BURT';
+SELECT * FROM ACTOR;
+SELECT FIRST_NAME, LAST_NAME FROM ACTOR;
+SELECT LAST_NAME, FIRST_NAME FROM ACTOR;
+SELECT FIRST_NAME, LAST_NAME FROM ACTOR WHERE FIRST_NAME = 'BURT';
+SELECT title, 12 * rental_rate + 200 FROM film;
+SELECT title, 12 * (rental_rate + 200) FROM film;
+========================================================================================================================================
+Column Aliases
+We can mention them after the column name. If there is a space in the string denoting the alias, then the use of double quotes around the string denoting 
+the alias is mandatory. We can also use the keyword AS between the name of the column and the alias. The following query covers all the possible options 
+for the alias:
+SELECT title AS "Film Title", release_year "Year of Release",description AS Summary, original_language_id Language FROM film;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+NULL is a special marker in the database which represents the absence of any value. It does not mean zero (in case of numeric columns) or an empty string 
+(for character or string columns). It just means there is no value at all. It was introduced by who proposed the relation data model first. It is
+a keyword in any relational database. NULL is a state, not a value. The output of the following query shows us the NULL in the last column mentioned in 
+the
+SELECT title, description, original_language_id FROM film;
+===============================================================================================================================================
+Distinct 
+In case we want to see distinct values for a column or a group of columns, we use the DISTINCT keyword. The results include NULL too. Let us see its 
+working step-by-step. Run the following query to see the list of all the values in a column of a table:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SELECT film_id FROM film_actor;
+You must have noticed that the values are not unique. To see the list of all the unique values, run the following query:
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SELECT DISTINCT film_id FROM film_actor;
+Let us see how it works with the combination of columns. Run the following query:
+select store_id, active from customer;
+=============================================================================================================================================
+We see a lot of duplicate pairs of values in the output. We can see the unique combination of the values for both the columns with the following query:
+select DISTINCT store_id, active from customer;
+We can see the four distinct combinations of values in the output of the above query. We can extend this logic to more than two columns.
+=======================================================================================================
+WHERE
+USE sakila;
+SELECT * FROM film;
+SELECT * FROM film WHERE rental_rate = 0.99 ;
+SELECT * FROM film WHERE title = 'ALONE TRIP';
+===================================================================================================================================
+Comparision operator
+SELECT * FROM film WHERE rental_rate > 1.99;
+SELECT * FROM film WHERE rental_rate >= 1.99;
+SELECT * FROM film WHERE rental_rate < 1.99;
+SELECT * FROM film WHERE rental_rate <= 1.99;
+Not equal to operator
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+SELECT * FROM film WHERE rental_rate <> 2.99;
+SELECT * FROM film WHERE rental_rate != 2.99;
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Between and in operator
+SELECT title, rental_rate FROM film WHERE rental_rate BETWEEN 0.99 AND 2.99;
+SELECT title, rental_rate FROM film WHERE rental_rate IN (0,0.99, 2.99, 4.99);
+SELECT title, rental_rate FROM film WHERE title IN ('ARIZONA BANG', 'ARABIA DOGMA');
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+LIKE Operator
+We must use wildcards _ and % in addition to characters. _ means exactly one character, and % means zero or more characters.
+SELECT * FROM film WHERE title LIKE 'A%';
+SELECT * FROM film WHERE title LIKE '_C%';
+This query returns all the rows where the value of the column has the second character as C. The wildcard pattern here means a single character followed 
+by C followed by any number of characters.
+SELECT * FROM film WHERE title LIKE '%E';
+This query returns all the rows where the value of the column has the last character as The wildcard pattern here means any number of characters and the 
+last character as
+SELECT * FROM film WHERE title LIKE '%B%';
+===========================================================================================================================================
+Comparing with NULL
+We know that the NULL means the absence of any value. If we try to use the equality operator to compare the values in a column with the then it does not 
+return anything. Following is the example of the syntactically correct, yet logically wrong
+query:
+wrong Query
+SELECT * FROM film WHERE original_language_id = NULL;
+================================================================================================================================================
+This query returns nothing. Following is the logically correct query:
+SELECT * FROM film WHERE original_language_id IS NULL;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+This query returns nothing. Following is the logically correct query:
+SELECT * FROM film WHERE original_language_id IS NULL;
+This query returns all the rows where the value of the column original_language_id is NULL as follows:
+=====================================================================================================================================
+Logical Operations
+SELECT * FROM film WHERE length >= 30 AND title LIKE 'A%';
+SELECT * FROM film WHERE length >= 30 OR title LIKE 'A%';
+SELECT * FROM film WHERE rental_duration NOT IN (1, 2, 3,5, 6);
+SELECT title, rental_rate FROM film WHERE rental_rate BETWEEN 0.99 AND 2.99;
+SELECT title, rental_rate FROM film WHERE rental_rate >=0.99 AND rental_rate <= 2.99;
+SELECT title, rental_rate FROM film WHERE title IN ('ARIZONA BANG', 'ARABIA DOGMA');
+SELECT title, rental_rate FROM film WHERE title = 'ARIZONABANG' OR title = 'ARABIA DOGMA';
+=======================================================================================================================================
+Sorting the Resultset
+We can sort the data retrieved by the SELECT query with the clause ORDER BY as follows:
+SELECT * FROM film ORDER BY title;
+The query returns the resultset sorted by alphabetically ascending order of the character column title.
+SELECT * FROM film ORDER BY title ASC;
+SELECT * FROM film ORDER BY title DESC;
+SELECT title AS NAME, description FROM film ORDER BY NAME;
+SELECT title AS NAME, description FROM film ORDER BY NAME DESC;
+SELECT title AS NAME, description FROM film ORDER BY NAME;
+SELECT title AS NAME, description FROM film ORDER BY NAME DESC;
+SELECT rental_rate, title, description FROM film ORDER BY rental_rate, title;
+SELECT rental_rate, title, description FROM film ORDER BY rental_rate, title DESC;
+=============================================================================================================================================
+Working with Dates
+SELECT * FROM rental WHERE rental_date = '2005-05-24 22:53:30';
+SELECT * FROM rental WHERE rental_date > '2005-05-24';
+SELECT * FROM rental WHERE rental_date BETWEEN '2005- 05-24' AND '2005-05-29';
