@@ -1,6 +1,5 @@
-There are other historical and
-current data models too. Following is the list of a few of
-them:Hierarchical database model
+There are other historical and current data models too. Following is the list of a few of them:
+Hierarchical database model
 Network model
 Object model
 Document model
@@ -24,9 +23,7 @@ sudo apt-get update
 sudo apt-get install mariadb-server --fix-missing -y
 sudo apt-get install mariadb-client -y
 ===============================================================================================================================
-We can connect to an instance with the Windows command
-prompt. Just run the following command on cmd to connect
-to an instance of MariaDB:
+We can connect to an instance with the Windows command prompt. Just run the following command on cmd to connect to an instance of MariaDB:
 mysql -u root -ptest123 -h localhost -P 3310
 To connect to an instance of MySQL:
 mysql -u root -ptest123 -h localhost -P 3306
@@ -42,8 +39,8 @@ CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'test123';
 The following query grants all the privileges on all the databases/schemas to the newly created user
 GRANT ALL PRIVILEGES ON *.* TO 'testuser'@'localhost';
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-We can run these queries with any interface (GUI or command prompt), and the result will be the same;If we are using Debian / Raspbian, we can log in to 
-our database without using sudo as follows:
+We can run these queries with any interface (GUI or command prompt), and the result will be the same;If we are using Debian / Raspbian, we can log in 
+to our database without using sudo as follows:
 mysql -u testuser -ptest123 -h localhost -P 3310
 ================================================================================================================================
 Download the zip file of the database from
@@ -56,8 +53,7 @@ SHOW DATABASES;
 mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-
 schema.sql
 mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-data.sql
-Run the following commands on the Raspbian / Debian
-command prompt:
+Run the following commands on the Raspbian / Debian command prompt:
 sudo mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-
 schema.sql
 sudo mysql -u root -ptest123 -h localhost -P 3310 < sakila-mv-
