@@ -96,3 +96,4 @@ SELECT film_id, title, description, release_year, rental_rate,
             FROM film
 ==========================================================================================================================================================
 Select LOWER(SUBSTR(title, 1, 5)) from film;
+Page NO--165
