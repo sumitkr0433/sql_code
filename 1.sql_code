@@ -61,7 +61,11 @@ data.sql
 =======================================================================================================================================
 The GUI tools like HeidiSQL, Oracle SQL Developer, and MySQL Workbench provide easy to use interface for MySQL and MariaDB.
 ========================================================================================================================================
-SHOW DATABASES;
+SHOW DATABASESelect first_name, last_name, length(first_name),
+length(last_name),
+NULLIF(length(first_name), length(last_name)) from actor;
+In the example above, we are comparing the lengths of two
+different character columns. The result looks as follows:S;
 To query the objects such as tables of a schema, we need to switch to that schema. The following query selects the schema sakila:
 USE SAKILA;
 To see the list of tables in a schema, we run the following query:
@@ -295,3 +299,9 @@ Select first_name, last_name, length(first_name),length(last_name),NULLIF(length
 In the example above, we are comparing the lengths of two different character columns. The result looks as follows:
 ============================================================================================================================================
 Page No-161
+Select first_name, last_name, length(first_name),length(last_name),NULLIF(length(first_name), length(last_name)) from actor;
+In the example above, we are comparing the lengths of two different character columns. The result looks as follows:
+If we want to choose the first non-NULL expression from multiple expressions, then we have to use the function coalesce():
+select coalesce(address2, address, district) from address;
+=====================================================================================================================================================
+Page No--162
