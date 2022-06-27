@@ -83,4 +83,16 @@ SELECT DATE_FORMAT(SYSDATE(), '%Y-%m-%d') FROM DUAL;
 SELECT DATE_FORMAT(SYSDATE(), '%Y-%m-%d %H:%i:%s') FROM DUAL;
 SELECT DATE_FORMAT(SYSDATE(), '%d-%b-%Y') FROM DUAL;
 Select first_name, last_name, length(first_name),length(last_name),NULLIF(length(first_name), length(last_name)) from actor;
-
+Select first_name, last_name, length(first_name),length(last_name),NULLIF(length(first_name), length(last_name)) from actor;
+select coalesce(address2, address, district) from address;
+=========================================================================================================================================================
+CASE Statement:-
+SELECT film_id, title, description, release_year, rental_rate,
+            CASE rental_rate
+            WHEN 0.99 THEN 1.00
+            WHEN 1.99 THEN 2.5
+            WHEN 2.99 THEN 4.5
+            ELSE rental_rate END AS "Revised Rental"
+            FROM film
+==========================================================================================================================================================
+Select LOWER(SUBSTR(title, 1, 5)) from film;
