@@ -294,3 +294,4 @@ The function returns NULL if two expressions are equal else will return the firs
 Select first_name, last_name, length(first_name),length(last_name),NULLIF(length(first_name), length(last_name)) from actor;
 In the example above, we are comparing the lengths of two different character columns. The result looks as follows:
 ============================================================================================================================================
+Page No-161
